@@ -1,5 +1,23 @@
 from flask import Flask, render_template , request
 from flaskext.mysql import MySQL
+from recommendMe import recommendMe
+from fetcherOmdb import fetchOmdb
+
+# fetching the data from omdbapi
+fetch = fetchOmdb()
+gernreR = []
+try:
+    genreR.append(fetch.present(list(recommendMe.build_chart('Romance')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Horror')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Animation')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Drama')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Action')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Science Fiction')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Comedy')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Crime')['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chart('Thriller')['imdb_id'])))
+except:
+    print('Exception Occured')
 
 app = Flask(__name__)
 
@@ -14,11 +32,12 @@ mysql.init_app(app)
 
 
 # webcode = open('webcode.html').read() - not needed
-
 @app.route('/')
 def webprint():
-    return render_template('index.html') 
+    
+    return render_template('index.html',genreR = genreR) 
 
+# login route 
 @app.route('/login' , methods= ['GET','POST'])
 def login():
     if(request.method== 'POST'):
@@ -33,15 +52,13 @@ def login():
         if(data == None):
             return 'Error bitch'
         else:
-
             return render_template('loggedin.html',userName = userName)
 
     return render_template('login.html')
 
 
-def recommedMovies(userId):
-    
 
+# signup route
 @app.route('/signup', methods = ['GET','POST'])
 def signup():
     if(request.method == 'POST'):
@@ -57,7 +74,7 @@ def signup():
         return 'success dude'
     return render_template('signup.html')
 
-
+# details route
 @app.route('/details')
 def details():
     return render_template('movieDetails.html')
