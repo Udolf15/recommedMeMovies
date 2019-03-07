@@ -1,0 +1,37 @@
+
+  
+  .fa-star {
+      color: #00000033;
+      padding: 0 4px;
+  }
+  
+  .clickedStar{
+      color: #000000dd;
+  }
+  
+  .starPicker{
+      font-size: 3rem !important;
+      cursor: pointer;
+      transition: .3s;
+      -webkit-transition: .3s;
+      margin-top: 1rem;
+  }
+  
+  .radioBtnStar{
+      display: none;
+  }
+  
+  .ratingDiv{
+    text-align:center;
+    margin-top:8em;
+  }
+  
+  label {
+    color: #000000;
+  }
+  
+  .form-group{
+    display: flex;
+    justify-content: center;
+    margin-top:.2rem;
+  }

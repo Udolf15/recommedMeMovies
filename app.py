@@ -33,9 +33,14 @@ def login():
         if(data == None):
             return 'Error bitch'
         else:
+
             return render_template('loggedin.html',userName = userName)
 
     return render_template('login.html')
+
+
+def recommedMovies(userId):
+    
 
 @app.route('/signup', methods = ['GET','POST'])
 def signup():
@@ -51,6 +56,11 @@ def signup():
         curr.close()
         return 'success dude'
     return render_template('signup.html')
+
+
+@app.route('/details')
+def details():
+    return render_template('movieDetails.html')
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 3000)
