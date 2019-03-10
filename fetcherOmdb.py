@@ -18,7 +18,6 @@ class fetchOmdb:
             r = requests.get(furl)
             json_object = r.text
             jsonArr.append(json.loads(json_object))
-            break
         return jsonArr
 
     # converting dat in json format to array of dictionary
@@ -29,6 +28,7 @@ class fetchOmdb:
 
         for json in jsonArr:
             Dict = {}
+            Dict['imdbID'] = json['imdbID']
             Dict['Title'] = json['Title']
             Dict['Released'] = json['Released']
             Dict['Year'] = json['Year']

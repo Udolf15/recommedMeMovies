@@ -31,7 +31,13 @@
         <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" id="theme-color" type="text/css" href="#"/>
         <!-- favicon links -->
-        <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
+		<link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
+		<style>
+			.details {padding :9px;
+			margin : 5px;
+			color : white;
+			}
+		</style>
     </head>
     <body>
         <!-- preloader Start -->
@@ -41,6 +47,8 @@
 		</div>
     </div>
 	<!-- prs Slider Start --><!-- prs navigation Start -->
+	
+	
 	<div class="prs_navigation_main_wrapper">
 		<div class="container-fluid">
 			<div id="search_open" class="gc_search_box">
@@ -48,12 +56,16 @@
 				<button><i class="fa fa-search" aria-hidden="true"></i>
 				</button>
 			</div>
+
+		
+							
+					
 			<div class="prs_navi_left_main_wrapper">
 				<div class="prs_menu_main_wrapper">
 					<nav class="navbar navbar-default">
 						<div id="dl-menu" class="xv-menuwrapper responsive-menu">
 							<button class="dl-trigger">
-								<img src="images/header/bars.png" alt="bar_png">
+								<img src="/static/images/header/bars.png" alt="bar_png">
 							</button>
 							<div class="prs_mobail_searchbar_wrapper" id="search_button">	<i class="fa fa-search"></i>
 							</div>
@@ -64,23 +76,29 @@
 									</ul>
 							</ul>
 						</div>
+						
+						<div style = "position: absolute; margin-top: 12%; margin-left: 33%;width: 60%">
+							<div class = "details"><b style = "font-size: 22px"> Title : </b>{{movieTitle}}</div>
+							<div class = "details"><b style = "font-size: 22px">Plot : </b>{{moviePlot}}</div>
+							<div class = "details"><b style = "font-size: 22px">Genre : </b>{{movieGenre}}</div>
+							<div class = "details"><b style = "font-size: 22px">Director : </b>{{movieDirector}}</div>
+							<div class = "details"><b style = "font-size: 22px">Runtime : </b>{{movieRuntime}}</div>
+							<div class = "details"><b style = "font-size: 22px">IMDB Rating : </b>{{movieIMDBRating}}</div>
+							<div class = "details"><b style = "font-size: 22px">Released Year : </b>{{movieReleased}}</div>
+							<div class = "details"><b style = "font-size: 22px">Director : </b>{{movieDirector}}</div>
+							<div class = "details"><b style = "font-size: 22px">Cast : </b>{{movieActors}}</div>
+						</div>
 
-						<div class="prs_upcom_movie_box_wrapper" style = "margin-top: 35%">
-							<div class="prs_upcom_movie_img_box">
-								<img src="/static/images/content/up2.jpg" alt="movie_img" />
-								<div class="prs_upcom_movie_img_overlay"></div>
-								<div class="prs_upcom_movie_img_btn_wrapper">
-									<ul>
-										<li><a href="/details">View Trailer</a>
-										</li>
-										<li><a href="/details">View Details</a>
-										</li>
-									</ul>
-								</div>
+						<div class="prs_upcom_movie_box_wrapper">
+							<div class="prs_upcom_movie_img_box" style = "margin-top:10%">
+								<img src="{{moviePoster}}" alt="movie_img" />
+
 							</div>
+							
+						
 
-                        <div class="ratingDiv" style = "padding-left: 10%;padding-top: 100%">
-							<form>
+                        <div class="ratingDiv" style = "padding-left: 5%;padding-top: 125%">
+							<form method = "POST" action = "">
 							<div class="form-group">
                               <input class="star1 radioBtnStar" type="radio" name="comment[rating]" value="1" required>
                               <i class="starPicker starIcon1 fa fa-star"></i>
@@ -101,6 +119,7 @@
 							</form>
 						  </div>
 						  
+
+						  
 			<script src="/static/js/ratingStar.js"></script>
-			
     {% include '/partials/footerForm.html' %}

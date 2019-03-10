@@ -32,4 +32,4 @@ class recommendMe():
         qualified['wr'] = qualified.apply(lambda x: (x['vote_count']/(x['vote_count']+m) * x['vote_average']) + (m/(m+x['vote_count']) * C), axis=1)
         qualified = qualified.sort_values('wr', ascending=False).head(250)
     
-        return qualified.head(15)
+        return qualified.head(7)
