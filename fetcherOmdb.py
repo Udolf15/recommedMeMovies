@@ -18,6 +18,7 @@ class fetchOmdb:
             r = requests.get(furl)
             json_object = r.text
             jsonArr.append(json.loads(json_object))
+            
         return jsonArr
 
     # converting dat in json format to array of dictionary
@@ -38,10 +39,8 @@ class fetchOmdb:
             Dict['Actors'] = json['Actors']
             Dict['Plot'] = json['Plot']
             Dict['Poster'] = json['Poster']
-            Dict['Production'] = json['Production']
             Dict['imdbRating'] = json['imdbRating']
             Dict['Runtime'] = json['Runtime']
-
             finalArr.append(Dict)
 
         return finalArr
