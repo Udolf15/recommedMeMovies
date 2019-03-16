@@ -1,6 +1,6 @@
-# Project Title
+# Recommend Me Movies
 
-One Paragraph of project description goes here
+This is a site that recommend movies based on the rating given by users previously, Initially user after first login is given set of Top movies in each genre using IMDB's weighted rating formula Weighted Rating (WR) = $(\frac{v}{v + m} . R) + (\frac{m}{v + m} . C)$
 
 ## Getting Started
 
