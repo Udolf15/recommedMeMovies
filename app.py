@@ -308,4 +308,4 @@ def details(imdbId):
 
 if __name__ == '__main__':
     app.secret_key='bitchlasanga'
-    app.run(host = '0.0.0.0', port = 3000)
+    app.run()
