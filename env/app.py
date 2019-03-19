@@ -29,9 +29,9 @@ app = Flask(__name__)
 # configuring DB
 
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'udolf'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'recommendmemovies'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'bitch'
+app.config['MYSQL_DB'] = 'recommendMeMovies'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #init mysql
@@ -50,7 +50,6 @@ def webprint():
 # login route 
 @app.route('/login' , methods= ['GET','POST'])
 def login():
-    global genreP
     if(request.method== 'POST'):
         userDetail = request.form
         userName = userDetail['username']
@@ -74,7 +73,7 @@ def login():
                 session['username'] = userName
                 print("Redirect")
                 personalizedList = []
-                if(rated>=5):
+                if(rated>5):
                     del genreP[:]
                     genreP.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
                     genreP.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
@@ -112,8 +111,8 @@ def login():
 #dashboard route
 @app.route('/dashboard')
 def dashboard():
-    global genreP
-    global genreList
+
+    personalizedList = []
 
     cur = mysql.connection.cursor()
     userD = cur.execute("SELECT * FROM users WHERE username = %s",[session['username']])
@@ -124,8 +123,7 @@ def dashboard():
 
     if(rated<5):
         genreP = genreR
-    
-        
+
     result = cur.execute("SELECT * FROM ratings WHERE userId = %s",[userId])
     print('above')
     if(result>0):
@@ -136,8 +134,7 @@ def dashboard():
             print(singleR['userId'])
             print(singleR['rating'])
     cur.close()
-
-
+    # genreR and genreP confusion
     return render_template('loggedin.html',genreR = genreP,movieGen = genreList)
 
 
@@ -146,11 +143,6 @@ def dashboard():
 def logout():
     session.pop('logged_in', None)
     session.clear()
-    global genreP
-    global genreR
-
-    genreP = genreR
-    
     redirect(url_for(""))
 
 
@@ -244,23 +236,21 @@ def details(imdbId):
             mysql.connection.commit()
             cur.close()
             print(userRating%5 == 0)
-            global genreP
-            global genreList
             if(userRating%5 == 0):
                 # for each user if we found out that the user has rated more than 5 movies or a 
                 # multiple of 5 then we will train the ml model and recommend the user movies
-                print("genreList size is ",len(genreList),len(genreP))
-                if(len(genreList) >= 6):
-                    del genreList[-1]
-                
+                del genreP[-1]
+                del genreList[-1]
+                if(userRating%20 == 0 ):
                     # here we are checking if the user have rated 20 movies we will also change the 
                     # genre movies also
-                del genreP[:]
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
+                    del genreP[:]
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Crime',userId)['imdb_id'])))
+                    genreP.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
 
                 cur = mysql.connection.cursor()
                 movieIdList = []
