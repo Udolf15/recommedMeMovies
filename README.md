@@ -29,8 +29,7 @@ To create users table and ratings table use the following commands :
 
 ``` CREATE TABLE users(id INT(11) AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100),email VARCHAR(100),username VARCHAR(30),movie2 VARCHAR(10),movie3 VARCHAR(10),movie4 VARCHAR(10),movie5 VARCHAR(10),movie6 VARCHAR(10),movie7 VARCHAR(10),movie8 VARCHAR(10),movie9 VARCHAR(10),movie10 VARCHAR(10)); ```
 
-``` CREATE TABLE ratings(id INT(11) AUTO_INCREMENT PRIMARY KEY, userId VARCHAR(100),movieId VARCHAR(100),imdbId VARCHAR(100),rating VARCHAR(5),rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
-```
+``` CREATE TABLE ratings(id INT(11) AUTO_INCREMENT PRIMARY KEY, userId VARCHAR(100),movieId VARCHAR(100),imdbId VARCHAR(100),rating VARCHAR(5),rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP); ```
 
 ## Deployment
 
