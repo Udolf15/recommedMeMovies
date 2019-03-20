@@ -2,7 +2,7 @@
 
 This is a site that recommend movies based on the ratings given by users previously, Initially after first login, user is given set of Top movies in each genre using IMDB's weighted rating formula Weighted Rating (WR), After every 5 rating that the user rates system run SVD algorithm using surprise library to recommend the movies to the user based on the rating given by similar users, update the list of the movies that are shown to the user. The recommended movies are placed under mixed section which appears after the user has rated atleast 5 movies.
 
-The data for the ratings and users are used from the kaggle movies dataset these dataset are subset of the full dataset due to hardware limitations only small dataset is being used in this project.
+The data for the ratings and users are used from the kaggle movies dataset, complete data isn't used due to hardware limitations , only small part of the data is being used in this project.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ Create a virtual environment in the machine using command :``` virtualenv venv``
 After creating the vitual environment install all the libraries and modules used using command : ``` pip3 install -r requirements.txt ```
 Run the application using command :``` python3 app.py```
 
-If error presist check which modules are missing from the logs and download them using ```pip3 install ```command
+If error persist check which modules are missing from the logs and download them using ```pip3 install ```command
 
 ### Prerequisites
 
