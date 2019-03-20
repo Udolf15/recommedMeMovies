@@ -47,5 +47,5 @@ To Deploy the project on the cloud follow this small youtube series specially fo
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md]("https://github.com/Udolf15/recommendMeMovies/blob/master/gotcha.jpeg") file for details
+This project is licensed under the MIT License - see the [LICENSE.md]("gotcha.jepg") file for details
 
