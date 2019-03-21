@@ -11,7 +11,7 @@ class fetchOmdb:
     def fetcher(self,imdb_id):
         
         jsonArr = []
-
+        return jsonArr
         for imdbId in imdb_id:
             furl = url + imdbId
             print(furl)

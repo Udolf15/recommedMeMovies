@@ -14,7 +14,7 @@ from imdbToId import converter
 import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-                     user="udolf",         # your username
+                     user="root",         # your username
                      password="root",  # your password
                      db="recommendmemovies")        # name of the data base
 
