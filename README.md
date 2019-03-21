@@ -20,7 +20,7 @@ If error persist check which modules are missing from the logs and download them
 ### Prerequisites
 
 Virtual environment is required if not present in the system please install it using command : ``` pip3 install virtualenv ```
-Mysql is used as a database to install mysql use command : ``` sudo apt-get insall mysql-server and sudo apt-get install mysql-client ```
+Mysql is used as a database to install mysql use command : ``` sudo apt-get insall mysql-server``` ``` sudo apt-get install mysql-client ```
 
 Mysql settings :
 A database is to be created with 2 tables in them
