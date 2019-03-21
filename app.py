@@ -8,12 +8,10 @@ from flask_session import Session
 
 sess = Session()
 
-
 # fetching the data from omdbapi
 fetch = fetchOmdb()
 genreList = ['Romance','Horror','Animation','Action','Thriller']
 genreR = []
-genreP = []
 try:
     genreR.append(fetch.present(list(recommendMe.build_chart('Romance')['imdb_id'])))
     genreR.append(fetch.present(list(recommendMe.build_chart('Horror')['imdb_id'])))
@@ -50,7 +48,6 @@ def webprint():
 # login route 
 @app.route('/login' , methods= ['GET','POST'])
 def login():
-    global genreP
     if(request.method== 'POST'):
         userDetail = request.form
         userName = userDetail['username']
@@ -73,31 +70,7 @@ def login():
                 session['logged_in'] = True
                 session['username'] = userName
                 print("Redirect")
-                personalizedList = []
-                if(rated>=5):
-                    del genreP[:]
-                    genreP.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
-                    genreP.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
-                    genreP.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
-                    genreP.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
-                    genreP.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
-                    
-                    movieD = cur.execute("SELECT * FROM users WHERE id = %s",[userId])
-                    x = cur.fetchone()
-                    print("X",x)
-                    if( x != None):
-                        for i in range(10):
-                            si = str(i+1)
-                            movieI = "movie"+si
-                            print("m",movieI)
-                            print("x",x[movieI])
-                            personalizedList.append(x[movieI])
-
-                    genreList.append('Mixed')
-                    genreP.append(fetch.present(personalizedList))
-                else:
-                    return redirect(url_for('dashboard'))
-                return redirect(url_for('dashboard'))
+                return medium(userId)
             else:
                 app.logger.info("Wrong password")
                 print("wrong")
@@ -108,13 +81,44 @@ def login():
 
     return render_template('login.html')
 
+def medium(userId):
+    personalizedList = []
+    global genreR
+    global genreList
+    del genreR[:]
+    genreR.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
+    genreR.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
+
+
+    cur = mysql.connection.cursor()      
+    movieD = cur.execute("SELECT * FROM users WHERE id = %s",[userId])
+    if(movieD>0):  
+        x = cur.fetchone()
+        rated = int(x['rated'])
+        print("X",x)
+        if( x != None and rated >= 5):
+            for i in range(10):
+                si = str(i+1)
+                movieI = "movie"+si
+                print("m",movieI)
+                print("x",x[movieI])
+                personalizedList.append(x[movieI])
+
+            genreList.append('Mixed')
+            genreR.append(fetch.present(personalizedList))
+    return redirect("http://18.222.140.111:8080/dashboard")
+
 
 #dashboard route
 @app.route('/dashboard')
 def dashboard():
-    global genreP
+    global genreR
     global genreList
-
+    print("hello",genreR)
+    print("hello list",genreList)
     cur = mysql.connection.cursor()
     userD = cur.execute("SELECT * FROM users WHERE username = %s",[session['username']])
     userId = cur.fetchone()['id']
@@ -122,9 +126,6 @@ def dashboard():
     print("userId",userId)
     rated = int(cur.fetchone()['rated'])
 
-    if(rated<5):
-        genreP = genreR
-    
         
     result = cur.execute("SELECT * FROM ratings WHERE userId = %s",[userId])
     print('above')
@@ -136,9 +137,9 @@ def dashboard():
             print(singleR['userId'])
             print(singleR['rating'])
     cur.close()
+    
 
-
-    return render_template('loggedin.html',genreR = genreP,movieGen = genreList)
+    return render_template('loggedin.html',genreR = genreR,movieGen = genreList)
 
 
 # logout route
@@ -146,12 +147,9 @@ def dashboard():
 def logout():
     session.pop('logged_in', None)
     session.clear()
-    global genreP
     global genreR
-
-    genreP = genreR
-    
-    redirect(url_for(""))
+    del genreR[-1]
+    redirect("http://18.222.140.111:8080/")
 
 
 # signup route
@@ -176,7 +174,7 @@ def signup():
         cur.close()
         print("bye")
 
-        return redirect(url_for('login'))
+        return redirect('http://18.222.140.111:8080/login')
     return render_template('signup.html')
         
 
@@ -244,23 +242,23 @@ def details(imdbId):
             mysql.connection.commit()
             cur.close()
             print(userRating%5 == 0)
-            global genreP
+            global genreR
             global genreList
             if(userRating%5 == 0):
                 # for each user if we found out that the user has rated more than 5 movies or a 
                 # multiple of 5 then we will train the ml model and recommend the user movies
-                print("genreList size is ",len(genreList),len(genreP))
+                print("genreList size is ",len(genreList),len(genreR))
                 if(len(genreList) >= 6):
                     del genreList[-1]
                 
                     # here we are checking if the user have rated 20 movies we will also change the 
                     # genre movies also
-                del genreP[:]
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
-                genreP.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
+                del genreR[:]
+                genreR.append(fetch.present(list(recommendMe.build_chartP('Romance',userId)['imdb_id'])))
+                genreR.append(fetch.present(list(recommendMe.build_chartP('Horror',userId)['imdb_id'])))
+                genreR.append(fetch.present(list(recommendMe.build_chartP('Animation',userId)['imdb_id'])))
+                genreR.append(fetch.present(list(recommendMe.build_chartP('Action',userId)['imdb_id'])))
+                genreR.append(fetch.present(list(recommendMe.build_chartP('Thriller',userId)['imdb_id'])))
 
                 cur = mysql.connection.cursor()
                 movieIdList = []
@@ -307,7 +305,7 @@ def details(imdbId):
                         personalizedList.append(x[movieI])
 
 
-                genreP.append(fetch.present(personalizedList))
+                genreR.append(fetch.present(personalizedList))
                 genreList.append("Mixed")
                 cur.close()
 
@@ -315,7 +313,7 @@ def details(imdbId):
                 
 
         else:
-            return redirect(url_for('login'))
+            return redirect('http://18.222.140.111:8080/login')
 
         cur = mysql.connection.cursor()
         print("Hell")
@@ -325,7 +323,7 @@ def details(imdbId):
         mysql.connection.commit()
         cur.close()
 
-        return redirect(url_for('dashboard'))
+        return redirect('http://18.222.140.111:8080/dashboard')
 
 
 app.config['SESSION_TYPE'] = 'filesystem'

@@ -14,12 +14,10 @@ from imdbToId import converter
 import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-                     user="root",         # your username
+                     user="udolf",         # your username
                      password="root",  # your password
                      db="recommendmemovies")        # name of the data base
 
-
-import warnings; warnings.simplefilter('ignore')
 
 gen_md = pd.read_csv('data/gen_md.csv')
 

@@ -18,7 +18,7 @@ class fetchOmdb:
             r = requests.get(furl)
             json_object = r.text
             jsonArr.append(json.loads(json_object))
-            break
+            
         return jsonArr
 
     # converting dat in json format to array of dictionary
