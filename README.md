@@ -2,7 +2,8 @@
 
 This is a movie recommending site, that recommend movies based on the ratings given by users previously on different movies in different genre, Initially after first login, user is given set of Top movies in each genre using IMDB's weighted rating formula Weighted Rating (WR), After every 5 rating that the user rates system run SVD algorithm using surprise library to recommend the movies to the user based on the rating given by similar users, update the list of the movies that are shown to the user. The recommended movies are placed under mixed section which appears after the user has rated atleast 5 movies.
 
-The data for the ratings and users are used from the kaggle movies dataset, complete data wasn't used due to hardware limitations , only small part of the data is being used in this project.
+The data for the ratings and users are used from the kaggle movies dataset, complete data wasn't used due to hardware limitations , only small part of the data is being used in this project.  
+
 
 ## Getting Started
 
@@ -20,13 +21,13 @@ If error persist check which modules are missing from the logs and download them
 ### Prerequisites
 
 Virtual environment is required if not present in the system please install it using command : ``` pip3 install virtualenv ```
-Mysql is used as a database to install mysql use command : ``` sudo apt-get insall mysql-server and sudo apt-get install mysql-client ```
+Mysql is used as a database to install mysql use command : ``` sudo apt-get insall mysql-server``` ``` sudo apt-get install mysql-client ```
 
 Mysql settings :
 A database is to be created with 2 tables in them
 
-Table 1 : users table
-Table 2 : ratigns table
+Table 1 : users table  
+Table 2 : ratigns table  
 
 To create users table and ratings table use the following commands : 
 
@@ -52,3 +53,7 @@ To Deploy the project on the cloud follow this small youtube series specially fo
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDA2I-P1IHKRzg4COUL-ZEEXAfeg3yxHJiGNWqAQL8wXMX7sfx) file for details
 
+#### Note  
+
+Main focus of this project is to integrate machine learning algorithm to website.  
+Edge cases for login and route checking middleware is not used in this project
