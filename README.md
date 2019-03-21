@@ -25,8 +25,8 @@ Mysql is used as a database to install mysql use command : ``` sudo apt-get insa
 Mysql settings :
 A database is to be created with 2 tables in them
 
-Table 1 : users table
-Table 2 : ratigns table
+Table 1 : users table  
+Table 2 : ratigns table  
 
 To create users table and ratings table use the following commands : 
 
