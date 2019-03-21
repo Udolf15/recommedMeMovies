@@ -9,7 +9,7 @@ The data for the ratings and users are used from the kaggle movies dataset, comp
 To run the web server on local machine follow these steps:
 
 Create a virtual environment in the machine using command :``` virtualenv venv```
-Before installing from the requirements folder some dependecies is needed to be installed
+Before installing from the requirements folder some dependecies are needed to be installed
 ```  pip3 install sudo apt-get install libmysqlclient-dev ```
 ```  pip3 install sudo numpy  ```
 After creating the vitual environment install all the libraries and modules used using command : ``` pip3 install -r requirements.txt ```
