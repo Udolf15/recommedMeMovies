@@ -1,6 +1,6 @@
 # Recommend Me Movies
 
-This is a site that recommend movies based on the ratings given by users previously, Initially after first login, user is given set of Top movies in each genre using IMDB's weighted rating formula Weighted Rating (WR), After every 5 rating that the user rates system run SVD algorithm using surprise library to recommend the movies to the user based on the rating given by similar users, update the list of the movies that are shown to the user. The recommended movies are placed under mixed section which appears after the user has rated atleast 5 movies.
+This is a movie recommending site, that recommend movies based on the ratings given by users previously on different movies in different genre, Initially after first login, user is given set of Top movies in each genre using IMDB's weighted rating formula Weighted Rating (WR), After every 5 rating that the user rates system run SVD algorithm using surprise library to recommend the movies to the user based on the rating given by similar users, update the list of the movies that are shown to the user. The recommended movies are placed under mixed section which appears after the user has rated atleast 5 movies.
 
 The data for the ratings and users are used from the kaggle movies dataset, complete data isn't used due to hardware limitations , only small part of the data is being used in this project.
 
