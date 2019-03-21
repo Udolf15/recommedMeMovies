@@ -55,5 +55,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://en
 
 #### Note  
 
-Main focus of this project is to integrate machine learning algorithm to web applications.  
+Main focus of this project is to integrate machine learning algorithm to website.  
 Edge cases for login and route checking middleware is not used in this project
