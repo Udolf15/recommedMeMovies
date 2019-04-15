@@ -51,7 +51,7 @@ To Deploy the project on the cloud follow this small youtube series specially fo
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDA2I-P1IHKRzg4COUL-ZEEXAfeg3yxHJiGNWqAQL8wXMX7sfx) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Udolf15/recommendMeMovies/blob/master/LICENSE) file for details
 
 #### Note  
 
