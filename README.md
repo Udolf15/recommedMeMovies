@@ -37,7 +37,7 @@ To create users table and ratings table use the following commands :
 
 ## Deployment
 
-To Deploy the project on the cloud follow this small youtube series[https://www.youtube.com/watch?v=-Gc8CMjQZfc&list=PL5KTLzN85O4KTCYzsWZPTP0BfRj6I_yUP] specially for flask app deployment on aws ec2 : 
+To Deploy the project on the cloud follow this small [youtube series](https://www.youtube.com/watch?v=-Gc8CMjQZfc&list=PL5KTLzN85O4KTCYzsWZPTP0BfRj6I_yUP) specially for flask app deployment on aws ec2 : 
 
 ## Built With
 
