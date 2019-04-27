@@ -27,9 +27,9 @@ app = Flask(__name__)
 # configuring DB
 
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_USER'] = 'udolf'
 app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'recommendmemovies'
+app.config['MYSQL_DB'] = 'recommendme'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #init mysql
@@ -109,7 +109,7 @@ def medium(userId):
 
             genreList.append('Mixed')
             genreR.append(fetch.present(personalizedList))
-    return redirect("http://18.222.140.111:8080/dashboard")
+    return redirect("http://18.216.16.160:8080/dashboard")
 
 
 #dashboard route
@@ -149,7 +149,7 @@ def logout():
     session.clear()
     global genreR
     del genreR[-1]
-    redirect("http://18.222.140.111:8080/")
+    redirect("http://18.216.16.160:8080/")
 
 
 # signup route
@@ -174,7 +174,7 @@ def signup():
         cur.close()
         print("bye")
 
-        return redirect('http://18.222.140.111:8080/login')
+        return redirect('http://18.216.16.160:8080/login')
     return render_template('signup.html')
         
 
@@ -313,7 +313,7 @@ def details(imdbId):
                 
 
         else:
-            return redirect('http://18.222.140.111:8080/login')
+            return redirect('http://18.216.16.160:8080/login')
 
         cur = mysql.connection.cursor()
         print("Hell")
@@ -323,7 +323,7 @@ def details(imdbId):
         mysql.connection.commit()
         cur.close()
 
-        return redirect('http://18.222.140.111:8080/dashboard')
+        return redirect('http://18.216.16.160:8080/dashboard')
 
 
 app.config['SESSION_TYPE'] = 'filesystem'
