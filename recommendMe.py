@@ -138,7 +138,7 @@ class recommendMe():
         svd = SVD()
         evaluate(svd, data, measures=['RMSE', 'MAE'])
         trainset = data.build_full_trainset()
-        svd.train(trainset)
+        svd.fit(trainset)
         # Performing the prediction for each movie according to the user    
         movies['est'] = movies['movieId'].apply(lambda x : svd.predict(int(user),x).est)
         movies = movies.sort_values('est', ascending=False)
