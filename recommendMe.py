@@ -14,9 +14,9 @@ from imdbToId import converter
 import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-                     user="root",         # your username
+                     user="udolf",         # your username
                      password="root",  # your password
-                     db="recommendmemovies")        # name of the data base
+                     db="recommendme")        # name of the data base
 
 
 gen_md = pd.read_csv('data/gen_md.csv')
@@ -46,7 +46,6 @@ class recommendMe():
     
         qualified['wr'] = qualified.apply(lambda x: (x['vote_count']/(x['vote_count']+m) * x['vote_average']) + (m/(m+x['vote_count']) * C), axis=1)
         qualified = qualified.sort_values('wr', ascending=False).head(250)
-    
         return qualified.head(7)
 
     '''

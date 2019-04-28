@@ -11,22 +11,21 @@ class fetchOmdb:
     def fetcher(self,imdb_id):
         
         jsonArr = []
-        return jsonArr
         for imdbId in imdb_id:
             furl = url + imdbId
             print(furl)
             r = requests.get(furl)
             json_object = r.text
             jsonArr.append(json.loads(json_object))
-            
+        print(jsonArr)
         return jsonArr
 
     # converting dat in json format to array of dictionary
     def present(self,imdb_id):
-        
+        print("present")
         jsonArr = self.fetcher(imdb_id)
         finalArr = []
-
+        print(jsonArr)
         for json in jsonArr:
             Dict = {}
             Dict['imdbID'] = json['imdbID']
