@@ -152,7 +152,7 @@ def logout():
     global genreR
     del genreR[-1]
     return redirect("http://127.0.0.1:5000/")
-
+    # logout
 
 # signup route
 @app.route('/signup', methods = ['GET','POST'])
