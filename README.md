@@ -11,7 +11,7 @@ To run the web server on local machine follow these steps:
 
 Create a virtual environment in the machine using command :``` virtualenv venv```
 Before installing from the requirements folder some dependecies are needed to be installed
-```  pip3 install sudo apt-get install libmysqlclient-dev ```
+```  sudo apt-get install libmysqlclient-dev ```
 ```  pip3 install sudo numpy  ```
 After creating the vitual environment install all the libraries and modules used using command : ``` pip3 install -r requirements.txt ```
 Run the application using command :``` python3 app.py```
