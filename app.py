@@ -12,7 +12,9 @@ sess = Session()
 fetch = fetchOmdb()
 genreList = ['Romance','Horror','Animation','Action','Thriller']
 genreR = []
+print(fetch.present(list(recommendMe.build_chart('Romance')['imdb_id'])))
 try:
+    print("Inside")
     genreR.append(fetch.present(list(recommendMe.build_chart('Romance')['imdb_id'])))
     genreR.append(fetch.present(list(recommendMe.build_chart('Horror')['imdb_id'])))
     genreR.append(fetch.present(list(recommendMe.build_chart('Animation')['imdb_id'])))
