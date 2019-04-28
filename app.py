@@ -111,7 +111,7 @@ def medium(userId):
 
             genreList.append('Mixed')
             genreR.append(fetch.present(personalizedList))
-    return redirect("http://18.216.16.160:8080/dashboard")
+    return redirect("http://127.0.0.1:5000/dashboard")
 
 
 #dashboard route
@@ -151,7 +151,7 @@ def logout():
     session.clear()
     global genreR
     del genreR[-1]
-    redirect("http://18.216.16.160:8080/")
+    return redirect("http://127.0.0.1:5000/")
 
 
 # signup route
@@ -176,7 +176,7 @@ def signup():
         cur.close()
         print("bye")
 
-        return redirect('http://18.216.16.160:8080/login')
+        return redirect('http://127.0.0.1:5000/login')
     return render_template('signup.html')
         
 
@@ -315,7 +315,7 @@ def details(imdbId):
                 
 
         else:
-            return redirect('http://18.216.16.160:8080/login')
+            return redirect('http://127.0.0.1:5000/login')
 
         cur = mysql.connection.cursor()
         print("Hell")
@@ -325,7 +325,7 @@ def details(imdbId):
         mysql.connection.commit()
         cur.close()
 
-        return redirect('http://18.216.16.160:8080/dashboard')
+        return redirect('http://127.0.0.1:5000/dashboard')
 
 
 app.config['SESSION_TYPE'] = 'filesystem'
