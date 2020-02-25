@@ -1,5 +1,5 @@
 astroid==2.2.4
-numpy==1.11.2
+numpy==1.18.1
 bandit==1.5.1
 certifi==2018.11.29
 chardet==3.0.4
